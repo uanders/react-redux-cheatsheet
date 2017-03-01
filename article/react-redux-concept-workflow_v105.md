@@ -2,7 +2,7 @@
 
 Ulrich Anders
 
-Version 1.0.5, February 2107
+Version 1.0.5, February 2017
 
 ## Introduction
 
@@ -30,7 +30,7 @@ So, in order to supplement existing tutorials, this conceptual overview describe
 
 I'd like to start with a graphical cheat sheet explaining the workflow in a React Redux app. For those who already know React Redux it just serves as a reminder. For all others, once you have read this article you will understand the workflow pretty sure.
 
-![](/1440/react-redux-workflow-graphical-cheat-sheet-extended_v105.png)\
+![](/1440/react-redux-workflow-graphical-cheat-sheet-extended_v105.png)
 
 
 
