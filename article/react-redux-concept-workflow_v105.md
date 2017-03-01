@@ -148,7 +148,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-    Just as a side note, since this is the first time we are showing class methods: remember, that there are two types of notations for method declarations with a different effect to [*autobinding*](https://facebook.github.io/react/docs/react-without-es6.html#autobinding) the methods to the *this* operator of the classes. Here, you would need to bind manageSomeDate() and applySomeBusinessLogic() manually to the *this* operator, whereas makeSomeCalculations() would have been autobound.
+    Just as a side note, since this is the first time we are showing class methods: remember, that there are two types of notations for method declarations with a different effect to [*autobinding*](https://facebook.github.io/react/docs/react-without-es6.html#autobinding) the methods to the *this* operator of the classes. Here, you would need to bind manageSomeDate() and applySomeBusinessLogic() manually to the *this* operator, whereas *makeSomeCalculations()* would have been autobound.
 
 
 1. Since only smart container components manage data only they need to receive state data from the store. This works via a function called [*connect()*](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) which you need to import from 'react-redux'. The *connect()* function returns a higher order component, i.e. a component that expects a component as an argument. This argument is the smart component that you want to connect. The higher order component then returns a new instance of the smart component that is now connected. 
@@ -183,7 +183,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. Whenever the state in the store is updated, all your *mapStateToProps()* mapping functions for connecting components will be called and the new state data mapped to the properties of the connected components.
     
-1. If you only want to map a subset of your slice to certain properties in your component you can make a selection from the slice of your state tree. A function that makes a selection is called a *selector*. But remember each time the store gets an update all mapping functions are called independent of whether the state change is relevant for a component. That means that also all the selector functions are called. If a selector function now is computationally expensive, it might slow down your app. In this case you should optimize your selectors by help of [reselect](https://github.com/reactjs/reselect).
+1. If you only want to map a subset of your slice to certain properties in your component you can make a selection from the slice of your state tree. A function that makes a selection is called a *selector*. But remember each time the store gets an update all mapping functions are called independent of whether the state change is relevant for a component. That means that also all the selector functions are called. If a selector function now is computationally expensive, it might slow down your app. In this case you should optimize your selectors by help of ['reselect'](https://github.com/reactjs/reselect).
 
     ```JavaScript
     function mapStateToProps(state) {
@@ -191,7 +191,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
           // component gets this.props.selection1
           selection1: selector1(state.slice01),
           // component gets this.props.selection2   
-          selection2: selector2(state.slice01)   
+          selection2: selector2(state.slice01)
         }
     }
     ```
