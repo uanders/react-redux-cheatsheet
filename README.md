@@ -12,8 +12,10 @@ The idea is to help new and existing Redux users to understand how the general m
 
 This repo furthermore holds an [article](/article/react-redux-concept-workflow_v105.md) that walks you though an extended version of this cheatsheet. Two very common libraries have been added to the extended version: 'react-router' and 'immutable'.
 
-The article runs through the Redux workflow starting at the dominant Redux player: the store.
-While going the full circle the article introduces the main Redux concepts and touches briefly on some external libraries such as: 'redux-persist', 'redux-thunk', 'redux-saga', 'redux-promise', 'reselect' and 'normalizr'.
+So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it might probably be much easier to follow all of the above tutorials.
+
+While going the full circle this article also points to some of the common external libraries and how they would come into play: ‘immutable’, ‘normalizr’, ‘reselect’, ‘redux-thunk’, ‘redux-saga’, ‘redux-promise’ and ‘redux-persist’.
+
 
 Please, raise an issue in case you find errors or things to be not clear enough.
 

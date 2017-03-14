@@ -8,7 +8,7 @@ Version 1.0.5, February 2017
 
 [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/) really are some influential developments and are certainly shaping how Frontend design is carried out in the foreseeable future. However, the concept of React is much easier to grasp than Redux. React deals with components that are much more imaginable. Redux on the other hand introduces a workflow that is much less naturally conceivable especially as it uses some vocabulary in its API that is not always semantically intuitive.^[Naming an API so that it is semantically intuitive is an art. At the time, the Redux API has been chosen to mainly stay close to the API of Flux which was by then already quite a known.]
 
-It is stated in the Redux documentation, that React does not need Redux and that it should not be used if it is not needed, but I think the opposite is true. Redux significantly reduces the complexity of an app, so in my opinion it really should always be used.^[I do not mean to suggest to always use Redux over MobX or Flux. I mean to always use Redux as opposed to not using Redux or alternatives.] I actually love to think that the name Redux is derived from REDUce compleXity.
+It is stated in the Redux documentation, that React does not need Redux and that it should not be used if it is not needed, but I think the opposite is true. Redux significantly reduces the complexity of an app, so in my opinion it really should be rather used than not used.^[I do not mean to suggest to always use Redux over MobX or Flux. I mean to always use Redux as opposed to not using Redux or alternatives.] I actually love to think that the name Redux is derived from REDUce compleXity.
 
 The price one has to pay for the reduction of complexity is, however, to learn the logic and vocabulary of an extra library. In addition to the official documentation, there are some really excellent tutorials out there about React with Redux. To name a few:
 
@@ -22,8 +22,9 @@ The price one has to pay for the reduction of complexity is, however, to learn t
 
 Most tutorials approach the topic of Redux by building an app. While this is done the tutorials introduce the important concepts and workflow around Redux step by step. The general problem with this approach is that two types of information are competing with each other: the conceptual overview and the details of the coding. 
 
-So, in order to supplement existing tutorials, this conceptual overview describes the Redux workflow in a React Redux app starting with the dominant player which is the store. Once the workflow is understood, it might probably be much easier to follow all the above tutorials. 
+So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it might probably be much easier to follow all of the above tutorials. 
 
+While going the full circle this article also points to some of the common external libraries and how they would come into play: ‘immutable’, ‘normalizr’, ‘reselect’, ‘redux-thunk’, ‘redux-saga’, ‘redux-promise’ and ‘redux-persist’.
 
 ## A Graphical Cheat Sheet
 
@@ -46,7 +47,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     state = {
       slice01,
       slice02,
-      ...
+      /* ... */
       sliceN
     }
     ```
@@ -78,7 +79,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     state = {
       slice01: fromJS(slice01)
       slice02: fromJS(slice02),
-      ...
+      /* ... */
       sliceN: fromJS(SliceN)
     }
     ```
@@ -95,7 +96,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     const rootReducer = function combineReducers({
       slice01,
       slice02,
-      ...
+      /* ... */
       sliceN
     })
     ```
@@ -148,10 +149,10 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-    Just as a side note, since this is the first time we are showing class methods: remember, that there are two types of notations for method declarations with a different effect to [*autobinding*](https://facebook.github.io/react/docs/react-without-es6.html#autobinding) the methods to the *this* operator of the classes. Here, you would need to bind manageSomeData() and applySomeBusinessLogic() manually to the *this* operator, whereas *handleSomeEvent()* would have been autobound.
+    Just as a side note, since this is the first time we are showing class methods: remember, that there are two types of notations for method declarations with a different effect to [*autobinding*](https://facebook.github.io/react/docs/react-without-es6.html#autobinding) the methods to the *this* operator of the classes. Here, you would need to bind *manageSomeData()* and *applySomeBusinessLogic()* manually to the *this* operator, whereas *handleSomeEvent()* would have been autobound.
 
 
-1. Since only smart container components manage data only they need to receive state data from the store. This works via a function called [*connect()*](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) which you need to import from 'react-redux'. The *connect()* function returns a higher order component, i.e. a component that expects a component as an argument. This argument is the smart component that you want to connect. The higher order component created by the connect() function renders the smart component passing the data from the store into its props.
+1. Since only smart container components manage data only they need to receive state data from the store. This works via a function called [*connect()*](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) which you need to import from 'react-redux'. The *connect()* function returns a higher order component, i.e. a component that expects a component as an argument. This argument is the smart component that you want to connect. The higher order component created by the *connect()* function renders the smart component passing the data from the store into its props.
 
     ```JavaScript
     import {connect} from 'react-redux'
@@ -171,10 +172,10 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     import {connect} from 'react-redux'
 
     function mapStateToProps(state) {
-        return {
-            // component gets this.props.slice01
-            slice01: state.slice01     
-        }
+      return {
+        // component gets this.props.slice01
+        slice01: state.slice01     
+      }
     }
     
     // export without a new name
@@ -187,16 +188,16 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
     ```JavaScript
     function mapStateToProps(state) {
-        return {
-          // component gets this.props.selection1
-          selection1: selector1(state.slice01),
-          // component gets this.props.selection2   
-          selection2: selector2(state.slice01)
-        }
+      return {
+        // component gets this.props.selection1
+        selection1: selector1(state.slice01),
+        // component gets this.props.selection2   
+        selection2: selector2(state.slice01)
+      }
     }
     ```
 
-1. Coming back to the *connect()* function. Even though you have imported the connect function properly from 'react-redux' you may wonder how the *connect()* function actually is able to access the store across the whole app even though the store is not explicitly passed down to all child components. The answer sits with a component called [Provider](https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store) that you must wrap around your App component. The sole purpose of the Provider is to add the store to the context of the App component, so that all child components can access it. [*Context*](https://facebook.github.io/react/docs/context.html) is a special feature of React for such rare cases. With this said, the *connect()* function can now access the store methods. Thus, the Provider component replaces the root component that we introduced in the beginning:
+1. Coming back to the *connect()* function. Even though you have imported the connect function properly from 'react-redux' you may wonder how the *connect()* function actually is able to access the store across the whole app even though the store is not explicitly passed down to all child components. The answer sits with a component called [*Provider*](https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store) that you must wrap around your App component. The sole purpose of the *Provider* is to add the store to the context of the App component, so that all child components can access it. [*Context*](https://facebook.github.io/react/docs/context.html) is a special feature of React for such rare cases. With this said, the *connect()* function can now access the store methods. Thus, the Provider component replaces the root component that we introduced in the beginning:
 
     ```JSX
     import { Provider } from 'react-redux'
@@ -222,9 +223,9 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
     ```JavaScript
     function mapDispatchToProps(dispatch) {
-        return {
-          /* your own bindings for the dispatch() function */
-        }
+      return {
+        /* your own bindings for the dispatch() function */
+      }
     }
 
     export default connect(mapStateToProps, 
@@ -244,7 +245,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-1. Here, I am explicitly saying *relevant* data. The *relevant* data are not necessarily the changing state data itself. The relevant data could also contain an ID, for instance, to find the corresponding state data in the state tree. It is a convention to specify the action types in capital letters. It is not a pre-requisite, but many people assign the relevant data to a key that is often named *payload* to have the same API for all action objects.
+1. Here, I am explicitly saying *relevant* data. The *relevant* data are not necessarily the changing state data itself. The relevant data could also contain an ID, for instance, to find the corresponding state data in the state tree. It is a convention to specify the action types in capital letters. It is not a pre-requisite, but many people assign the relevant data to a key that is often named [*payload*](https://github.com/acdlite/flux-standard-action) to have the same API for all action objects.
 
     ```JavaScript
     // relevant data
@@ -314,7 +315,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. If you want to save the store to local storage or re-hydrate the store when you restart your app it may be well worth to have a look at ['redux-persist'](https://github.com/rt2zz/redux-persist). This library also helps you with immutable transformations and with encrypting your data in the local storage.
 
-1. Sometimes you want to include additional functionality whenever an action command is issued by the *dispatch()* function. This could for instance be a logger function or a timeout scheduler. For this purpose Redux offers an interface to so called [middleware](http://redux.js.org/docs/advanced/Middleware.html). The middleware is executed after  the *dispatch()* and before the *rootReducer()* function. That means, each time when the *dispatch()* function is issuing an action command, the middleware is performed before the *rootReducer()* gets to work. To set this up, there is a third optional argument in *createStore()*  called *enhancer*. This argument expects a function that contains the individual middleware functions. Redux provides for such a function called [*applyMiddleware()*](http://redux.js.org/docs/api/applyMiddleware.html). You can now pass your enhancements as arguments to *applyMiddleware()* and they are registered so that they are executed each time the *dispatch()* function is called. Obviously, every middleware function has to comply to the middleware function specification, since the output of the first middleware function is becoming the input for the next.  The sequence in which they are executed is from left to right. The last function that is executed is actually the *dispatch()* function itself.
+1. Sometimes you want to include additional functionality whenever an action command is issued by the *dispatch()* function. This could for instance be a logger function or a timeout scheduler. For this purpose Redux offers an interface to so called [*middleware*](http://redux.js.org/docs/advanced/Middleware.html). The middleware is executed after  the *dispatch()* and before the *rootReducer()* function. That means, each time when the *dispatch()* function is issuing an action command, the middleware is performed before the *rootReducer()* gets to work. To set this up, there is a third optional argument in *createStore()*  called *enhancer*. This argument expects a function that contains the individual middleware functions. Redux provides for such a function called [*applyMiddleware()*](http://redux.js.org/docs/api/applyMiddleware.html). You can now pass your enhancements as arguments to *applyMiddleware()* and they are registered so that they are executed each time the *dispatch()* function is called. Obviously, every middleware function has to comply to the middleware function specification, since the output of the first middleware function is becoming the input for the next.  The sequence in which they are executed is from left to right. The last function that is executed is actually the *dispatch()* function itself.
 
     ```JavaScript
     import { createStore, applyMiddleware } from 'redux'
