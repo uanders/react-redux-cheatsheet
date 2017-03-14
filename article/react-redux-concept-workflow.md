@@ -20,7 +20,7 @@ The price one has to pay for the reduction of complexity is, however, to learn t
 1. [Learn Redux. Video series by Wes Bos.](https://learnredux.com/)
 1. [Learn React and Redux. Video series by Catalin Luntraru.](https://www.youtube.com/watch?v=d0oUGmSE6IY&list=PLJBrYU54JD2pTblB20OmV7GL6H5J-p2g8)
 
-Most tutorials approach the topic of Redux by building an app. While this is done the tutorials introduce the important concepts and workflow around Redux step by step. The general problem with this approach is that two types of information are competing with each other: the conceptual overview and the details of the coding. 
+Most tutorials approach the topic of Redux by building an app. While this is done the tutorials introduce the important concepts and workflow around Redux step by step. The general challenge with this approach is that two types of information are competing with each other: the conceptual overview and the details of the coding. 
 
 So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it might probably be much easier to follow all of the above tutorials. 
 
@@ -365,6 +365,6 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. With all this said you can now perfectly understand the workflow cycle of a React Redux app. We started the explanation with the store, but let's see what happens, when we actually start in the app. In the app a user activity generates an event. The event handler calls the *dispatch()* function that is sending the current state and an action (object) to the *rootReducer()*. The action object contains the relevant data for the requested change of state slice. The *rootReducer()* will interpret the *action.type*, process the data and generate a new state. After the store has received the new state, it triggers the re-render of the React Redux app. It also triggers the execution of all listener functions that are registered with the *subscribe()* method to the store. Furthermore, all components that are subscribed with *connect(mapStateToProps)* to the store now receive the new state data as defined in *mapStateToProps()*. 
 
-2. I hope this walk-through has added a little bit to understanding Redux and motivates you to now always use it.
+2. I hope this walk-through has added a little bit to understanding Redux and motivates you to now use it.
 
 
