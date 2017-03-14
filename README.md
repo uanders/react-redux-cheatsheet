@@ -10,7 +10,7 @@ The idea is to help new and existing Redux users to understand how the general m
 
 ## Article
 
-This repo furthermore holds an [article](/article/react-redux-concept-workflow_v105.md) that walks you though an extended version of this cheatsheet. Two very common libraries have been added to the extended version: 'react-router' and 'immutable'.
+This repo furthermore holds an [article](/article/react-redux-concept-workflow.md) that walks you though an extended version of this cheatsheet. Two very common libraries have been added to the extended version: 'react-router' and 'immutable'.
 
 So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it might probably be much easier to follow all of the above tutorials.
 
