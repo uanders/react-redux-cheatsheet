@@ -6,7 +6,8 @@ Version 1.0.6, March 2017
 
 ## Introduction
 
-[React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/) really are some influential developments and are certainly shaping how Frontend design is carried out in the foreseeable future. However, the concept of React is much easier to grasp than Redux. React deals with components that are much more imaginable. Redux on the other hand introduces a workflow that is much less naturally conceivable especially as it uses some vocabulary in its API that is not always semantically intuitive.^[Naming an API so that it is semantically intuitive is an art. At the time, the Redux API has been chosen to mainly stay close to the API of Flux which was by then already quite a known.]
+[React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/) really are some
+impressive developments and are certainly influencing how Frontend design is carried out now and in the foreseeable future. The principal concept of React is much easier to grasp than that of Redux. React deals with components that are much more imaginable. Redux on the other hand introduces a workflow that is much less naturally conceivable especially as it uses some vocabulary in its API that is not always intuitive.^[Naming an API so that it is semantically intuitive is an art. At the time, the Redux API has been chosen to mainly stay close to the API of Flux which was already quite known by then.]
 
 It is stated in the Redux documentation, that React does not need Redux and that it should not be used if it is not needed, but I think the opposite is true. Redux significantly reduces the complexity of an app, so in my opinion it really should be rather used than not used.^[I do not mean to suggest to always use Redux over MobX or Flux. I mean to always use Redux as opposed to not using Redux or alternatives.] I actually love to think that the name Redux is derived from REDUce compleXity.
 
