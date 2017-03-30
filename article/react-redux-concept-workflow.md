@@ -2,7 +2,11 @@
 
 Ulrich Anders
 
-Version 1.0.7, March 2017
+Version 1.0.8, March 2017
+
+## Preface
+
+This article contains a graphical cheat sheet for the workflow and concept of Redux. In line with this cheat sheet the purpose of this article is to help new and existing Redux users to understand how the general mechanism of Redux works in detail and where to hook into this process.
 
 ## Introduction
 
@@ -23,9 +27,9 @@ The price one has to pay for the reduction of complexity is, however, to learn t
 
 Most tutorials approach the topic of Redux by building an app. While this is done the tutorials introduce the important concepts and workflow around Redux step by step. The general challenge with this approach is that two types of information are competing with each other: the conceptual overview and the details of the coding. 
 
-So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it might probably be much easier to follow all of the above tutorials. 
+So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it will probably be much easier to follow all of the above tutorials. 
 
-While going the full circle this article also points to some of the common external libraries and how they would come into play: ‘immutable’, ‘normalizr’, ‘reselect’, ‘redux-thunk’, ‘redux-saga’, ‘redux-promise’ and ‘redux-persist’.
+While going the full circle this article also points to some of the common external libraries and how they would come into play: 'immutable', 'normalizr', 'reselect', 'redux-thunk', 'redux-saga', 'redux-promise' and 'redux-persist'.
 
 ## A Graphical Cheat Sheet
 
@@ -89,7 +93,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. It is a [popular convention](http://redux.js.org/docs/api/combineReducers.html) (but not an obligation) to name a reducer function after the slice it manages. I suggest, that you really stick to this convention, because it is helpful in many respects when you go in. So a reducer for *state.slice01* would be called *slice01()*.
 
-1. Since there usually is a reducer for each slice, we end up with a lot of individual slice reducers each of them only concerned with their slice. However, we need to take care of all slices all the same time. The solution is to combine all slice reducers into one overall reducer that is often named *rootReducer()*. To achieve this there is a function called [*combineReducers()*](http://redux.js.org/docs/api/combineReducers.html) that takes an object containing the individal reducers:
+1. Since there usually is a reducer for each slice, we end up with a lot of individual slice reducers each of them is only concerned with its slice. However, we need to take care of all slices all at the same time. The solution is to combine all slice reducers into one overall reducer that is often named *rootReducer()*. To achieve this there is a function called [*combineReducers()*](http://redux.js.org/docs/api/combineReducers.html) that takes an object containing the individal reducers:
 
     ```JavaScript
     import { combineReducers } from 'redux'
