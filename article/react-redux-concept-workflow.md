@@ -89,7 +89,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-1. Every slice of the state is managed by its own function, that is responsible for updating exactly this slice and copying all other slices into the new state object. This function is called a  [*reducer()*](http://redux.js.org/docs/basics/Reducers.html). The name *reducer* is semantically not very meaningful and has a purely technical origin.^[Quoting the official documentation: "It's called a reducer because it's the type of function you would pass to Array.prototype.reduce(reducer, ?initialValue)."] If you struggle with the name translate it into *producer*, because its only purpose is to just produce a new state that is put in the store.
+1. Every slice of the state is managed by its own function, that is responsible for updating exactly this slice and copying all other slices into the new state object. This function is called a  [*reducer()*](http://redux.js.org/docs/basics/Reducers.html). The name *reducer* is semantically not very meaningful and has a purely technical origin.^[Quoting from the official documentation: "It's called a reducer because it's the type of function you would pass to Array.prototype.reduce(reducer, ?initialValue)."] If you struggle with the name translate it into *producer*, because its only purpose is to just produce a new state that is put in the store.
 
 1. It is a [popular convention](http://redux.js.org/docs/api/combineReducers.html) (but not an obligation) to name a reducer function after the slice it manages. I suggest, that you really stick to this convention, because it is helpful in many respects when you go in. So a reducer for *state.slice01* would be called *slice01()*.
 
