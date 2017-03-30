@@ -93,7 +93,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. It is a [popular convention](http://redux.js.org/docs/api/combineReducers.html) (but not an obligation) to name a reducer function after the slice it manages. I suggest, that you really stick to this convention, because it is helpful in many respects when you go in. So a reducer for *state.slice01* would be called *slice01()*.
 
-1. Since there usually is a reducer for each slice, we end up with a lot of individual slice reducers each of them is only concerned with its slice. However, we need to take care of all slices all at the same time. The solution is to combine all slice reducers into one overall reducer that is often named *rootReducer()*. To achieve this there is a function called [*combineReducers()*](http://redux.js.org/docs/api/combineReducers.html) that takes an object containing the individal reducers:
+1. Since there usually is a reducer for each slice, we end up with a lot of individual slice reducers where each of them is only concerned with its slice. However, we need to take care of all the slices at the same time. The solution is to combine all slice reducers into one overall reducer that is often named *rootReducer()*. To achieve this there is a function called [*combineReducers()*](http://redux.js.org/docs/api/combineReducers.html) that takes an object containing the individal reducers:
 
     ```JavaScript
     import { combineReducers } from 'redux'
