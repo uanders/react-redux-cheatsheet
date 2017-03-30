@@ -2,7 +2,7 @@
 
 Ulrich Anders
 
-Version 1.0.8, March 2017
+Version 1.0.9, March 2017
 
 ## Preface
 
@@ -154,7 +154,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-    Just as a side note, since this is the first time we are showing class methods: remember, that there are two types of notations for method declarations with a different effect to [*autobinding*](https://facebook.github.io/react/docs/react-without-es6.html#autobinding) the methods to the *this* operator of the classes. Here, you would need to bind *manageSomeData()* and *applySomeBusinessLogic()* manually to the *this* operator, whereas *handleSomeEvent()* would have been autobound.
+    Just as a side note, since this is the first time we are showing class methods: remember, that there are two types of notations for method declarations with a different effect to [*autobinding*](https://facebook.github.io/react/docs/react-without-es6.html#autobinding) the methods to the [*this*](http://exploringjs.com/es6/ch_arrow-functions.html#sec_traditional-functions-bad-non-methods) operator of the classes. Here, you would need to bind *manageSomeData()* and *applySomeBusinessLogic()* manually to the *this* operator, whereas *handleSomeEvent()* would have been autobound.
 
 
 1. Since only smart container components manage data only they need to receive state data from the store. This works via a function called [*connect()*](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) which you need to import from 'react-redux'. The *connect()* function returns a higher order component, i.e. a component that expects a component as an argument. This argument is the smart component that you want to connect. The higher order component created by the *connect()* function renders the smart component passing the data from the store into its props.
