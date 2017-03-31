@@ -2,7 +2,7 @@
 
 Ulrich Anders
 
-Version 1.0.9, March 2017
+Version 1.1.0, April 2017
 
 ## Preface
 
@@ -36,7 +36,7 @@ While going the full circle this article also points to some of the common exter
 
 I'd like to start with a graphical cheat sheet explaining the workflow in a React Redux app. For those who already know React Redux it just serves as a reminder. For all others, once you have read this article you will understand the workflow pretty sure.
 
-![](/1440/react-redux-workflow-graphical-cheat-sheet-extended_v105.png)
+![](/1440/react-redux-workflow-graphical-cheat-sheet-extended_v110.png)
 
 
 
@@ -129,17 +129,17 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. There are two types of components: [smart (container) components and dumb (presentational) components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3upgdk21p). Smart components have state, dumb components don't. Of course, there are exemptions to this rule. In the context of Redux you can interpret that smart components have outsourced the state they originally possessed to an external state manager which is the store. 
 
-1. Smart components manage data, make computations, apply business logic and embed dumb components. They also pass down the data needed by the dumb components. 
+1. Smart components are managing data, making calculations or handling events. They also embed dumb components and pass down data or functions needed by the dumb components. 
 
     ```JSX
     class SmartComponent01 extends Component {
       manageSomeData () {
         /* ... */
       }
-      applySomeBusinessLogic () {
+      makeSomeCalculations () {
         /* ... */
       }
-      handleSomeEvent = () => {
+      handleSomeEvent = (event) => {
         /* ... */
       }
   
@@ -147,7 +147,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
         return (
           <div>
             <DumpComponent01 data={/*...*/} />
-            <DumpComponent02 data={/*...*/} />
+            <DumpComponent02 func={/*...*/} />
           </div>
         )
       }

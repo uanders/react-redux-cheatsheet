@@ -1,15 +1,15 @@
 # react-redux-cheatsheet
 
-Version Cheatsheet: 1.0.5<br>
-Version Article: 1.0.9
+Version Cheatsheet: 1.1.0<br>
+Version Article: 1.1.0
 
 ## Overview
 
 This repository contains a graphical cheat sheet for the workflow and concept of Redux in two resolutions: 1440px and 3840px.
 
-The idea is to help new and existing Redux users to understand how the general mechanism of Redux works in a little bit more detail and where to hook into this process.
+The idea is to help new and existing Redux users to understand how the general mechanism of Redux works in some more detail and where to hook into this process.
 
-![](1440/react-redux-workflow-graphical-cheat-sheet_v105.png)
+![](1440/react-redux-workflow-graphical-cheat-sheet_v110.png)
 
 ## Article
 
