@@ -1,4 +1,4 @@
-# React Redux --- Concept, Workflow & Cheatsheet
+# React Redux --- Concept, Workflow & Cheat Sheet
 
 Ulrich Anders
 
