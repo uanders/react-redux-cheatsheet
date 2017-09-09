@@ -386,6 +386,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
         <Route path="/about" component={About} />
         <Route path="/users" component={Users} />
       </div>
+    )
     ```   
 
 ## Wrapping up
