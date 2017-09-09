@@ -369,7 +369,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     )
     ```
 
-In your App component you can then use linking and routing by help of NavLink and Route components:
+1. In your App component you can then use linking and routing by help of NavLink and Route components:
 
 
     ```JSX
