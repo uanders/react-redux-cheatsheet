@@ -116,9 +116,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 1. Note, since *combineReducers()* takes an object of reducers you can also build subsets of reducers with *combineReducers()* and then combine these subsets into the *rootReducer()*.
 
 
-
 ## App & Components
-
 
 1. A React Redux app contains components nested in components.
 
@@ -318,7 +316,6 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 ## Round up
 
-
 1. Even though we started this article with the store, we have not spoken about how to create it. This was because we needed to introduce the concept of reducers first. Now, that we know what reducers are, we can set up the store with [*createStore()*](http://redux.js.org/docs/api/createStore.html). At the minimum the store needs one argument which is the *rootReducer()*. Why? Remember, that later on the *store.dispatch()* function is calling the *rootReducer()*, so it needs to know it. As an optional second argument you can pre-populate the store with an initial state:
 
     ```JavaScript
@@ -356,24 +353,40 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 1. React and Redux are synchronous by nature, that means they go about their things sequentially.  But what happens, if the *dispatch()* is issuing an action command to the root reducer, but the relevant data are not immediately available and you need to wait for them to arrive from an external API? Or if you want to *dispatch()* an action command which data are based on a promise? For these cases Redux has additional libraries such as ['redux-thunk'](https://github.com/gaearon/redux-thunk), ['redux-promise'](https://www.npmjs.com/package/redux-promise) or ['redux-saga'](https://github.com/redux-saga/redux-saga). They all come as middleware for the *dispatch()* function and help you deal with such cases.
 
 
-1. As React apps are rendered on the client side, there are initially no URLs to get around in the app. Nevertheless it makes absolute sense to have URLs and to link to certain references in your app. This is achieved with a package called ['react-router'](https://github.com/ReactTraining/react-router). Basically, it just offers a Router component, that comes along with a lot of features to manage the routing in your app. The Router component is placed between your Root component and your App component and attributes the root path '/' to your App component. You can then nest further routes underneath, for instance for components such as About or Users:
+1. As React apps are rendered on the client side, there are initially no URLs to get around in the app. Nevertheless it makes absolute sense to have URLs and to link to certain references in your app. This is achieved with a package called ['react-router'](https://github.com/ReactTraining/react-router). I am referring to ≥v4 of 'react-router', since quite some API updates have taken place in this version compared to previous versions. Basically 'react-router' offers a Router component, that comes along with a lot of features to manage the routing in your app. If you want to have routing functionality in your app, it is conceptually easiest to just wrap the Router component around you app.
 
 
     ```JSX
     import { Provider } from 'react-redux'
+    import { BrowserRouter as Router } from 'react-router-dom'
 
     const Root = ( {store} ) => (
       <Provider store={store}>
         <Router>
-          <Route path="/" component={App}>
-            <Route path="about" component={About} />
-            <Route path="users" component={Users} />
-          </Route>
+          <App />
         </Router>
       </Provider>
     )
-    ```   
+    ```
 
+In your App component you can then use linking and routing by help of NavLink and Route components:
+
+
+    ```JSX
+    import { Provider } from 'react-redux'
+    import { NavLink, Route } from 'react-router-dom'
+
+    const App = () => (
+      <div>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/users">Users</NavLink>
+
+        <Route exact path="/" component={Home}>
+        <Route path="/about" component={About} />
+        <Route path="/users" component={Users} />
+      </div>
+    ```   
 
 ## Wrapping up
 
