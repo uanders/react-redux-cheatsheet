@@ -2,7 +2,7 @@
 
 Ulrich Anders
 
-Version 1.1.0, April 2017
+Version 1.2.0, September 2017
 
 ## Preface
 
