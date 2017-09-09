@@ -25,9 +25,9 @@ The price one has to pay for the reduction of complexity is, however, to learn t
 1. [Learn Redux. Video series by Wes Bos.](https://learnredux.com/)
 1. [Learn React and Redux. Video series by Catalin Luntraru.](https://www.youtube.com/watch?v=d0oUGmSE6IY&list=PLJBrYU54JD2pTblB20OmV7GL6H5J-p2g8)
 
-Most tutorials approach the topic of Redux by building an app. While this is done the tutorials introduce the important concepts and workflow around Redux step by step. The general challenge with this approach is that two types of information are competing with each other: the conceptual overview and the details of the coding. 
+Most tutorials approach the topic of Redux by building an app. While this is done the tutorials introduce the important concepts and workflow around Redux step by step. The general challenge with this approach is that two types of information are competing with each other: the conceptual overview and the details of the coding.
 
-So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it will probably be much easier to follow all of the above tutorials. 
+So, in order to supplement existing tutorials, this article describes the Redux conceptual overview and its workflow in a React Redux app. The description is starting with the dominant player in Redux Applications which is the store. Once the workflow is understood, it will probably be much easier to follow all of the above tutorials.
 
 While going the full circle this article also points to some of the common external libraries and how they would come into play: 'immutable', 'normalizr', 'reselect', 'redux-thunk', 'redux-saga', 'redux-promise' and 'redux-persist'.
 
@@ -42,7 +42,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 ## Store
 
-1. The central idea of a Redux app is to separate the state of the app from the app itself. 
+1. The central idea of a Redux app is to separate the state of the app from the app itself.
 1. The state of the app is stored in a [store](http://redux.js.org/docs/basics/Store.html). I therefore distinguish between the state OF the app which is IN the store.
 1. The store is THE dominante player in a React Redux app.
 1. The state stored in the store is a simple JS object with slices. As the state thus hierarchically contains other structures it also called a state tree:
@@ -57,7 +57,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-1. Every slice can have its own data type: number, string, array and of course object. For the purpose of this tutorial I assume that all slices are of type object. For managing the state of your app you will find, that it is much easier to access parts of this objects if it is normalized. Read more about normalization in the library [*normalizr*](https://github.com/paularmstrong/normalizr). 
+1. Every slice can have its own data type: number, string, array and of course object. For the purpose of this tutorial I assume that all slices are of type object. For managing the state of your app you will find, that it is much easier to access parts of this objects if it is normalized. Read more about normalization in the library [*normalizr*](https://github.com/paularmstrong/normalizr).
 
     ```JavaScript
     // bad:
@@ -113,11 +113,11 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 ## App & Components
 
 
-1. A React Redux app contains components nested in components. 
+1. A React Redux app contains components nested in components.
 
 1. When a parent component has a child component the parent can pass down data to its child via key-value-pairs. These data become properties of the child component and are therefore accessible from within the child component via the property keyword [*props*](https://facebook.github.io/react-native/docs/props.html).
 
-1. As the store is a component completely separate from the app, the store needs to become known to the app. This is achieved by passing the store from the Root component to the App component. Within the App component the store would now be accessible with *this.props.store*. 
+1. As the store is a component completely separate from the app, the store needs to become known to the app. This is achieved by passing the store from the Root component to the App component. Within the App component the store would now be accessible with *this.props.store*.
 
     ```JSX
     const Root = ( {store} ) => (
@@ -127,9 +127,9 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 1. The store could now be passed down from the App component to all its child components. But this is exactly not what we want, because not all components would need the store at all or all of it.
 
-1. There are two types of components: [smart (container) components and dumb (presentational) components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3upgdk21p). Smart components have state, dumb components don't. Of course, there are exemptions to this rule. In the context of Redux you can interpret that smart components have outsourced the state they originally possessed to an external state manager which is the store. 
+1. There are two types of components: [smart (container) components and dumb (presentational) components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3upgdk21p). Smart components have state, dumb components don't. Of course, there are exemptions to this rule. In the context of Redux you can interpret that smart components have outsourced the state they originally possessed to an external state manager which is the store.
 
-1. Smart components are managing data, making calculations or handling events. They also embed dumb components and pass down data or functions needed by the dumb components. 
+1. Smart components are managing data, making calculations or handling events. They also embed dumb components and pass down data or functions needed by the dumb components.
 
     ```JSX
     class SmartComponent01 extends Component {
@@ -142,7 +142,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
       handleSomeEvent = (event) => {
         /* ... */
       }
-  
+
       render() {
         return (
           <div>
@@ -164,14 +164,14 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
     /* ... */
 
-    const ConnectedSmartComponent01 = connect()(SmartComponent01) 
+    const ConnectedSmartComponent01 = connect()(SmartComponent01)
     export default ConnectedSmartComponent01
 
     ```
 
 1. Even though your smart component is now connected, it does not yet receive any state data from the store. So you need to pass it the required state data. But where do you map it to? Well, remember components have properties and they are named *props*.
 
-1. Thus, the mapping from a state slice to the properties of a smart component is done with a function that is conventionally named [*mapStateToProps()*](http://redux.js.org/docs/basics/UsageWithReact.html). Per connected component you'll need to write such a function, that will return the state data of the slice(s) needed by the component. So, in the end you will have plenty of *mapStateToProps()* functions all with the same name, but a different content. The same name is not a problem, since none of the *mapStateToProps()* functions are ever exported. So, for the component to now actually receive the state data via the *connect()* function you need to pass *mapStateToProps()* to the *connect()* function. By doing this, the connected component is then subscribing to Redux state updates. 
+1. Thus, the mapping from a state slice to the properties of a smart component is done with a function that is conventionally named [*mapStateToProps()*](http://redux.js.org/docs/basics/UsageWithReact.html). Per connected component you'll need to write such a function, that will return the state data of the slice(s) needed by the component. So, in the end you will have plenty of *mapStateToProps()* functions all with the same name, but a different content. The same name is not a problem, since none of the *mapStateToProps()* functions are ever exported. So, for the component to now actually receive the state data via the *connect()* function you need to pass *mapStateToProps()* to the *connect()* function. By doing this, the connected component is then subscribing to Redux state updates.
 
     ```JavaScript
     import {connect} from 'react-redux'
@@ -182,13 +182,13 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
         slice01: state.slice01     
       }
     }
-    
+
     // export without a new name
-    export default connect(mapStateToProps)(SmartComponent01) 
+    export default connect(mapStateToProps)(SmartComponent01)
     ```
 
 1. Whenever the state in the store is updated, all your *mapStateToProps()* mapping functions for connecting components will be called and the new state data mapped to the properties of the connected components.
-    
+
 1. If you only want to map a subset of your slice to certain properties in your component you can make a selection from the slice of your state tree. A function that makes a selection is called a *selector*. It is a convention to name selector functions with an initial *get...*. But remember each time the store gets an update all mapping functions are called independent of whether the state change is relevant for a component. That means that also all the selector functions are called. If a selector function now is computationally expensive, it might slow down your app. In this case you should optimize your selectors by help of ['reselect'](https://github.com/reactjs/reselect).
 
     ```JavaScript
@@ -233,7 +233,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
       }
     }
 
-    export default connect(mapStateToProps, 
+    export default connect(mapStateToProps,
                            mapDispatchToProps)(SmartComponent01)
     ```
 
@@ -254,32 +254,32 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
     ```JavaScript
     // relevant data
-    let payload = 
+    let payload =
       {
         id,
         something
       }
     ```
 
-1. It is not so convenient to deal with action objects, so typically one uses a function, that returns the action object. This function has the name [*actionCreator()*](http://redux.js.org/docs/basics/Actions.html#action-creators). The name is a little bit pompous, because the function is not really creating much, it is just returning an action object --- that's it. 
+1. It is not so convenient to deal with action objects, so typically one uses a function, that returns the action object. This function has the name [*actionCreator()*](http://redux.js.org/docs/basics/Actions.html#action-creators). The name is a little bit pompous, because the function is not really creating much, it is just returning an action object --- that's it.
 
     ```JavaScript
     // this simple function is called an actionCreator
     function do_something(payload) {
       return (
         {
-          type: DO_SOMETHING, 
+          type: DO_SOMETHING,
           payload
         }
       )
     }
     ```
 
-1. If the *dispatch()* function is now dispatching a command only in form of an object, which function is then actually receiving this command and dealing with updating the store? We are coming back to our reducer functions that we introduced earlier. Remember, that the purpose of the reducer functions is to produce a new slice of the state, if there is a change within this slice. So this means the *dispatch()* function has to call the reducer function. And this is exactly what happens underneath in the Redux code. So within its function body the  *dispatch()* function calls the *rootReducer()* function and passes over the command what to do in form of the *action* object as the second argument. 
+1. If the *dispatch()* function is now dispatching a command only in form of an object, which function is then actually receiving this command and dealing with updating the store? We are coming back to our reducer functions that we introduced earlier. Remember, that the purpose of the reducer functions is to produce a new slice of the state, if there is a change within this slice. So this means the *dispatch()* function has to call the reducer function. And this is exactly what happens underneath in the Redux code. So within its function body the  *dispatch()* function calls the *rootReducer()* function and passes over the command what to do in form of the *action* object as the second argument.
 
 1. And the first argument? A *rootReducer()* obviously, needs two arguments in order to return a new state: *rootReducer = (state, action) => newState*. The first argument is the current state in the store and the second argument represents the changes to it. And where does the *rootReducer()* now get the current state from? Well, again from the *dispatch()* function. It first fetches the current state from the store with *store.getState()* method and then passes the current state to the *rootReducer()* as a first argument together with the *action* object as a second argument.
 
-1. The *rootReducer()* takes the received action and hands it down to all its child reducers, however, not with the whole state but only with their slice of the state: *sliceReducer = (slice, action) => newSlice*.^[Note, other than the [*Redux Documentation*](http://redux.js.org/docs/basics/Reducers.html#handling-actions) reads *(previousState, action) => newState* a reducer does not receive the whole state by default but only its slice of the state.] Each slice reducer compares the received *action.type* to the cases it has within its function body. If no match is found it returns the current state of the slice and nothing changes. If there is a match it computes the update of the according slice and returns it, so that an overall new state with an updated slice can be generated. 
+1. The *rootReducer()* takes the received action and hands it down to all its child reducers, however, not with the whole state but only with its corresponding slice of the state: *sliceReducer = (slice, action) => newSlice*.^[Note, other than the [*Redux Documentation*](http://redux.js.org/docs/basics/Reducers.html#handling-actions) reads *(previousState, action) => newState* a reducer does not receive the whole state by default but only its slice of the state.] Each slice reducer compares the received *action.type* to the cases it has within its function body. If no match is found it returns the current state of the slice and nothing changes. If there is a match it computes the update of the according slice and returns it, so that an overall new state with an updated slice can be generated.
 
     ```JavaScript
     // reducer for state.slice01
@@ -287,7 +287,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     function slice01(slice01 = {}, action) {
       switch (action.type) {
         case DO_SOMETHING:
-          return slice01.setIn(['somewhere', action.payload.id], 
+          return slice01.setIn(['somewhere', action.payload.id],
                                action.payload.something)
         default:
           return slice01
@@ -296,7 +296,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     ```
 
 
-1. In this way, the store receives a new state. When the store is updated with a new state state a re-render of the components that have subscribed to the store is triggered.
+1. In this way, the store receives a new state. When the store is updated with a new state a re-render of the components that have subscribed to the store is triggered.
 
 1. Note, that action creators are most often used to create actions that lead to a change of the state in the store. But not all action creators are used to generate state changes that are stored. Some action objects are generated by action creators just to make temporary state changes to the app which are not stored.
 
@@ -306,7 +306,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     store.subscribe(listener)
     ```
 
-1. This completes the cycle. 
+1. This completes the cycle.
 
 
 ## Round up
@@ -316,7 +316,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
     ```JavaScript
     import { createStore } from 'redux'
-    
+
     let store = createStore(rootReducer, initialState)
     ```
 
@@ -370,7 +370,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
 
 ## Wrapping up
 
-1. With all this said you can now perfectly understand the workflow cycle of a React Redux app. We started the explanation with the store, but let's see what happens, when we actually start in the app. In the app a user activity generates an event. The event handler calls the *dispatch()* function that is sending the current state and an action (object) to the *rootReducer()*. The action object contains the relevant data for the requested change of state slice. The *rootReducer()* will interpret the *action.type*, process the data and generate a new state. After the store has received the new state, it triggers the re-render of the React Redux app. It also triggers the execution of all listener functions that are registered with the *subscribe()* method to the store. Furthermore, all components that are subscribed with *connect(mapStateToProps)* to the store now receive the new state data as defined in *mapStateToProps()*. 
+1. With all this said you can now perfectly understand the workflow cycle of a React Redux app. We started the explanation with the store, but let's see what happens, when we actually start in the app. In the app a user activity generates an event. The event handler calls the *dispatch()* function that is sending the current state and an action (object) to the *rootReducer()*. The action object contains the relevant data for the requested change of state slice. The *rootReducer()* will interpret the *action.type*, process the data and generate a new state. After the store has received the new state, it triggers the re-render of the React Redux app. It also triggers the execution of all listener functions that are registered with the *subscribe()* method to the store. Furthermore, all components that are subscribed with *connect(mapStateToProps)* to the store now receive the new state data as defined in *mapStateToProps()*.
 
 2. I hope this walk-through has added a little bit to understanding Redux and motivates you to now use it.
 
