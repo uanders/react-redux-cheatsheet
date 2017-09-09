@@ -94,7 +94,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
     }
     ```
 
-1. There are some pros and cons using [*immutable.js*] which you can find in the [Redux recipes for immutable.js](http://redux.js.org/docs/recipes/UsingImmutableJS.html). I agree with all of them but I differ with respect to putting the whole state into immutable.js. Instead, I recommend to use immutable.js only within a slice which gives you much more flexibility and preserves the logic of the state being split in slices, where each slice can be accessed and managed separately.
+1. There are some pros and cons using *immutable.js* which you can find in the [Redux recipes for *immutable.js*](http://redux.js.org/docs/recipes/UsingImmutableJS.html). I agree with all of them but I differ with respect to putting the whole state into immutable.js. Instead, I recommend to use immutable.js only within a slice which gives you much more flexibility and preserves the logic of the state being split in slices, where each slice can be accessed and managed separately.
 
 1. Every slice of the state is managed by its own function, that is responsible for updating exactly this slice and copying all other slices into the new state object. This function is called a  [*reducer()*](http://redux.js.org/docs/basics/Reducers.html). The name *reducer* is semantically not very meaningful and has a purely technical origin.^[Quoting from the official documentation: "It's called a reducer because it's the type of function you would pass to Array.prototype.reduce(reducer, ?initialValue)."] If you struggle with the name translate it into *producer*, because its only purpose is to just produce a new state that is put in the store.
 
