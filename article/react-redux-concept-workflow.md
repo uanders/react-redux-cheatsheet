@@ -382,7 +382,7 @@ I'd like to start with a graphical cheat sheet explaining the workflow in a Reac
         <NavLink to="/about">About</NavLink>
         <NavLink to="/users">Users</NavLink>
 
-        <Route exact path="/" component={Home}>
+        <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/users" component={Users} />
       </div>
