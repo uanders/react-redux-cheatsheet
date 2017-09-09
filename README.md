@@ -1,7 +1,7 @@
 # react-redux-cheatsheet
 
 Version Cheatsheet: 1.1.0<br>
-Version Article: 1.1.1
+Version Article: 1.2.0
 
 ## Overview
 

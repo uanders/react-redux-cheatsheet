@@ -8,6 +8,11 @@ Version 1.1.0, April 2017
 
 This article contains a graphical cheat sheet for the workflow and concept of Redux. In line with this cheat sheet the purpose of this article is to help new and existing Redux users to understand how the general mechanism of Redux works in detail and where to hook into this process.
 
+This article is not an easy read. It is really for understanding the workflow of React Redux in detail. I recommend that you look at the graphical cheatsheet in parallel (print out, split screen, second monitor) while reading the article to always keep the overview.
+
+I am trying to keep the article current as much as possible, however, the most recent version will always be on [GitHub](https://github.com/uanders/react-redux-cheatsheet) together with a Changelog.
+
+
 ## Introduction
 
 [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/) really are some
